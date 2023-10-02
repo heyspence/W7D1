@@ -10,7 +10,7 @@
 #  updated_at      :datetime         not null
 #
 class User < ApplicationRecord
-    before_validation :ensure_session_token 
+    before_validation :ensure_session_token
     attr_reader :password
 
     def password=(password)
@@ -41,7 +41,7 @@ class User < ApplicationRecord
     def generate_unique_session_token
         loop do
             session_token = SecureRandom::urlsafe_base64
-            return sesson_token unless User.exists?(session_token: session_token)
+            return session_token unless User.exists?(session_token: session_token)
         end
     end
 end
